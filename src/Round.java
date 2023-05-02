@@ -43,6 +43,7 @@ public class Round {
             setStepDisplay();
             char guess = logic.getLetter();
             processStep(guess);
+            System.out.println("\033[0;31mCurrent Score: " + playerA.name + " - " + playerA.getScore() + " : " + playerB.name + " - " + playerB.getScore() + "\033[0m" );
         }
     }
 
@@ -59,10 +60,12 @@ public class Round {
             numberOfGuesses++;
             System.out.println("\033[0;31mIncorrect Guess!\033[0m");
             if(numberOfGuesses == CHANCES) {
+                System.out.println("\033[0;31mRound Over! No Player won for Round  " + roundNumber + "\033[0m");
                 roundOver = true;
             }
         } else if (String.valueOf(guessedWord).equals(wordToGuess)) {
             System.out.println("\033[0;32mPlayer " + currentPlayer.name + " won Round " + roundNumber + ". The word is " + wordToGuess + "\033[0m");
+            currentPlayer.setScore(currentPlayer.getScore() + 1);
             roundOver = true;
         }
     }

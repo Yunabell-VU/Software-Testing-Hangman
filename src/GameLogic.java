@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class GameLogic {
     private final Scanner scan;
@@ -34,27 +35,49 @@ public class GameLogic {
     // TODO: Add input validation
     public String getUserName(String player) {
         System.out.println("Enter the name of Player " + player + " :");
-        String name = this.scan.nextLine();
+        String name;
+        do {
+            name = this.scan.nextLine();
+            if (name.length() > 10) {
+                System.out.println("You can only enter a name within 10 characters : ");
+            }
+        } while (name.length() > 10);
+
         System.out.println("You have set Player " + player + " : " + name);
         return name;
     }
 
-    public void closeScanner() {
-        this.scan.close();
-    }
-
-    // TODO: Add input validation
     public int getRoundNumber() {
-        System.out.println("Enter the number of rounds you want to play: ");
-        int number = this.scan.nextInt();
+        System.out.println("Enter the number of rounds (1 to 9) you want to play: ");
+        int number;
+        do {
+
+            while(!scan.hasNextInt()) {
+                System.out.println("Please enter an integer between 1 to 9: ");
+                this.scan.next();
+            }
+            number = scan.nextInt();
+        } while (number < 1 || number > 9);
+
         System.out.println("You have set number of rounds to: " + number);
         return number;
     }
 
-    // TODO: Add input validation
     public char getLetter() {
-        char letter = scan.nextLine().charAt(0);
+        String tmp;
+        do {
+            tmp = scan.next();
+            if ((!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches())) {
+                System.out.println("Please enter a letter: ");
+            }
+        } while (!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches());
+
+        char letter = tmp.charAt(0);
         return letter;
+    }
+
+    public void closeScanner() {
+        this.scan.close();
     }
 
     public void setInitialScreen() {
