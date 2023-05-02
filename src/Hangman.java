@@ -4,6 +4,7 @@ public class Hangman {
     private final GameLogic logic;
     private final Player playerA;
     private final Player playerB;
+    private Player playerToStart;
     private Round currentRound;
     private int roundNumber;
     private int currentRoundNumber;
@@ -16,9 +17,10 @@ public class Hangman {
 
         this.playerA = new Player(nameA);
         this.playerB = new Player(nameB);
+        this.playerToStart = playerA;
 
         this.currentRoundNumber = 1;
-        this.currentRound = new Round(this.currentRoundNumber, this.playerA);
+        this.currentRound = new Round(this.currentRoundNumber, playerToStart, playerA, playerB);
     }
 
     private boolean isGameOver() {
@@ -29,7 +31,9 @@ public class Hangman {
         this.logic.setInitialScreen();
         while (!isGameOver()) {
             currentRound.processRound();
-            this.roundNumber++;
+            this.currentRoundNumber++;
+            playerToStart = playerToStart.equals(playerA)? playerB : playerA;
+            currentRound = new Round(currentRoundNumber,playerToStart, playerA, playerB);
         }
         this.logic.closeScanner();
     }
