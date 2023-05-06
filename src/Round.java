@@ -40,7 +40,7 @@ public class Round {
     private void processStep(char guess) {
         boolean hit = false;
         for (int i = 0; i < wordToGuess.length(); i++) {
-            if (wordToGuess.charAt(i) == guess) {
+            if (wordToGuess.charAt(i) == guess && guessedWord[i] != guess) {
                 guessedWord[i] = guess;
                 hit = true;
             }
