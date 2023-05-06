@@ -1,3 +1,5 @@
+package org.hangman;
+
 public class Hangman {
     private final GameLogic logic;
     private boolean gameover;

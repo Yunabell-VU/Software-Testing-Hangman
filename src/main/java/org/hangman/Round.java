@@ -1,3 +1,5 @@
+package org.hangman;
+
 import java.util.Arrays;
 
 public class Round {
@@ -6,7 +8,7 @@ public class Round {
     private final GameLogic logic;
     private static final int CHANCES = 6;
     private int numberOfGuesses;
-    private char[] guessedWord;
+    private final char[] guessedWord;
     public boolean roundOver;
 
     public Round(){
@@ -26,7 +28,7 @@ public class Round {
         logic.clearScreen();
         System.out.println("Current guess: " + String.valueOf(guessedWord));
         System.out.println("You still have : " + (CHANCES - numberOfGuesses) + " chances.");
-        System.out.println(this.logic.HANGMAN_FIGURE[numberOfGuesses]);
+        System.out.println(logic.HANGMAN_FIGURE[numberOfGuesses]);
         System.out.print("Please Enter a guess (Hint: " + wordToGuessType + ") : ");
     }
     public void processRound() {
@@ -49,7 +51,7 @@ public class Round {
             numberOfGuesses++;
             System.out.println("\033[0;31mIncorrect Guess!\033[0m");
             if(numberOfGuesses == CHANCES) {
-                System.out.println(this.logic.HANGMAN_FIGURE[numberOfGuesses]);
+                System.out.println(logic.HANGMAN_FIGURE[numberOfGuesses]);
                 System.out.println("\033[0;31mYou lost the game. The correct word is:  " + wordToGuess + "\033[0m");
                 roundOver = true;
             }

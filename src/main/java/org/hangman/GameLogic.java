@@ -1,3 +1,5 @@
+package org.hangman;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -27,7 +29,7 @@ public class GameLogic {
 
     public GameLogic(){
         this.scan = new Scanner(System.in);
-    };
+    }
 
     public Puzzle generatePuzzle() {
         return DICTIONARY[(int) (Math.random() * DICTIONARY.length)];
@@ -45,8 +47,7 @@ public class GameLogic {
 
         char letter = tmp.charAt(0);
 
-        if (letter == 'y') return true;
-        else return false;
+        return letter == 'y';
     }
 
     public char getLetter() {
@@ -58,8 +59,7 @@ public class GameLogic {
             }
         } while (!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches());
 
-        char letter = tmp.toLowerCase().charAt(0);
-        return letter;
+        return tmp.toLowerCase().charAt(0);
     }
 
     public void closeScanner() {

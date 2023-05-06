@@ -1,3 +1,5 @@
+package org.hangman;
+
 public class Puzzle {
     public String type;
     public String word;
