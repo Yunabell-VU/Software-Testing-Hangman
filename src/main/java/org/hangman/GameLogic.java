@@ -39,10 +39,9 @@ public class GameLogic {
         String tmp;
         do {
             tmp = scan.next();
-            if ((!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches())) {
-                System.out.println("Please enter 'y' or 'n': ");
+            if ((!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches())|| (tmp.charAt(0) != 'y' && tmp.charAt(0) != 'n')) {
+                System.out.println("Invalid input! Please enter 'y' or 'n': ");
             }
-
         } while (!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches() || (tmp.charAt(0) != 'y' && tmp.charAt(0) != 'n'));
 
         char letter = tmp.charAt(0);
