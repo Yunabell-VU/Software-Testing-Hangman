@@ -32,35 +32,20 @@ public class GameLogic {
         return DICTIONARY[(int) (Math.random() * DICTIONARY.length)];
     }
 
-    // TODO: Add input validation
-    public String getUserName(String player) {
-        System.out.println("Enter the name of Player " + player + " :");
-        String name;
+    public boolean getReplyResponse() {
+        String tmp;
         do {
-            name = this.scan.nextLine();
-            if (name.length() > 10) {
-                System.out.println("You can only enter a name within 10 characters : ");
+            tmp = scan.next();
+            if ((!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches())) {
+                System.out.println("Please enter 'y' or 'n': ");
             }
-        } while (name.length() > 10);
 
-        System.out.println("You have set Player " + player + " : " + name);
-        return name;
-    }
+        } while (!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches() || (tmp.charAt(0) != 'y' && tmp.charAt(0) != 'n'));
 
-    public int getRoundNumber() {
-        System.out.println("Enter the number of rounds (1 to 9) you want to play: ");
-        int number;
-        do {
+        char letter = tmp.charAt(0);
 
-            while(!scan.hasNextInt()) {
-                System.out.println("Please enter an integer between 1 to 9: ");
-                this.scan.next();
-            }
-            number = scan.nextInt();
-        } while (number < 1 || number > 9);
-
-        System.out.println("You have set number of rounds to: " + number);
-        return number;
+        if (letter == 'y') return true;
+        else return false;
     }
 
     public char getLetter() {
@@ -72,7 +57,7 @@ public class GameLogic {
             }
         } while (!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches());
 
-        char letter = tmp.charAt(0);
+        char letter = tmp.toLowerCase().charAt(0);
         return letter;
     }
 
