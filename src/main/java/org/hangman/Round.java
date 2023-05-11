@@ -51,6 +51,7 @@ public class Round {
             numberOfGuesses++;
             System.out.println("\033[0;31mIncorrect Guess!\033[0m");
             if(numberOfGuesses == CHANCES) {
+                logic.clearScreen();
                 System.out.println(logic.HANGMAN_FIGURE[numberOfGuesses]);
                 System.out.println("\033[0;31mYou lost the game. The correct word is:  " + wordToGuess + "\033[0m");
                 roundOver = true;
