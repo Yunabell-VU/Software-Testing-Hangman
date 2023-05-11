@@ -38,21 +38,21 @@ public class GameLogic {
     public boolean getReplyResponse() {
         String tmp;
         do {
-            tmp = scan.next();
-            if ((!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches())|| (tmp.charAt(0) != 'y' && tmp.charAt(0) != 'n')) {
+            tmp = scan.nextLine();
+            if ((!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches())|| (tmp.charAt(0) != 'y' && tmp.charAt(0) != 'n' && tmp.charAt(0) != 'Y' && tmp.charAt(0) != 'N')) {
                 System.out.println("Invalid input! Please enter 'y' or 'n': ");
             }
-        } while (!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches() || (tmp.charAt(0) != 'y' && tmp.charAt(0) != 'n'));
+        } while (!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches() || (tmp.charAt(0) != 'y' && tmp.charAt(0) != 'n' && tmp.charAt(0) != 'Y' && tmp.charAt(0) != 'N'));
 
         char letter = tmp.charAt(0);
 
-        return letter == 'y';
+        return letter == 'y' || letter == 'Y';
     }
 
     public char getLetter() {
         String tmp;
         do {
-            tmp = scan.next();
+            tmp = scan.nextLine();
             if ((!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches())) {
                 System.out.println("Please enter a letter: ");
             }
