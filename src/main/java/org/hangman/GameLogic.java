@@ -54,7 +54,7 @@ public class GameLogic {
         do {
             tmp = scan.nextLine();
             if ((!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches())) {
-                System.out.println("Please enter a letter: ");
+                System.out.println("Invalid input! Please enter a letter: ");
             }
         } while (!Pattern.compile("[a-zA-Z]{1}").matcher(tmp).matches());
 
