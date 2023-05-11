@@ -29,11 +29,11 @@ public class Round {
         System.out.println("Current guess: " + String.valueOf(guessedWord));
         System.out.println("You still have : " + (CHANCES - numberOfGuesses) + " chances.");
         System.out.println(logic.HANGMAN_FIGURE[numberOfGuesses]);
-        System.out.print("Please Enter a guess (Hint: " + wordToGuessType + ") : ");
     }
     public void processRound() {
         while(!roundOver){
             setStepDisplay();
+            System.out.print("Please Enter a guess (Hint: " + wordToGuessType + ") : ");
             char guess = logic.getLetter();
             processStep(guess);
         }
@@ -51,12 +51,12 @@ public class Round {
             numberOfGuesses++;
             System.out.println("\033[0;31mIncorrect Guess!\033[0m");
             if(numberOfGuesses == CHANCES) {
-                logic.clearScreen();
-                System.out.println(logic.HANGMAN_FIGURE[numberOfGuesses]);
+                setStepDisplay();
                 System.out.println("\033[0;31mYou lost the game. The correct word is:  " + wordToGuess + "\033[0m");
                 roundOver = true;
             }
         } else if (String.valueOf(guessedWord).equals(wordToGuess)) {
+            setStepDisplay();
             System.out.println("\033[0;32mYou won the game! " + "\033[0m");
             roundOver = true;
         }
